@@ -1,65 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import {createBottomTabNavigator} from 'react-navigation';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {createSwitchNavigator} from 'react-navigation';
 
-import Explore from './screens/Explore';
-import Chats from './screens/Chats';
-import Contacts from './screens/Contacts';
-import Profile from './screens/Profile';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
+import Index from './screens/Index';
 
-export default createBottomTabNavigator({
-  Chats: {
-    screen: Chats,
-    navigationOptions: {
-      tabBarLabel: 'CHATS',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="ios-heart-outline" color={tintColor} size={24} />
-      )
-    }
-  },
-  Contacts: {
-    screen: Contacts,
-    navigationOptions: {
-      tabBarLabel: 'CONTACTS',
-      tabBarIcon: ({ tintColor }) => (
-        <Image source={require('./assets/airbnb.png')} style={{ height: 22, width: 22, tintColor: tintColor }} />
-      )
-    }
-  },
-  Explore: {
-    screen: Explore,
-    navigationOptions: {
-      tabBarLabel: 'EXPLORE',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="ios-search-outline" color={tintColor} size={24} />
-      )
-    }
-  },
-  Profile: {
-    screen: Profile,
-    navigationOptions: {
-      tabBarLabel: 'PROFILE',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="ios-person-outline" color={tintColor} size={24} />
-      )
-    }
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppSwitchNavigator />
+    );
   }
+}
+
+const AppSwitchNavigator = createSwitchNavigator({
+  Login: Login,
+  Signup: Signup,
+  Index: Index
 }, {
-  tabBarOptions: {
-    activeTintColor: 'purple',
-    inactiveTintColor: 'grey',
-    style: {
-      backgroundColor: 'white',
-      borderTopWidth: 0,
-      shadowOffset: { width: 5, height: 3 }, // for ios
-      shadowColor: 'black',  // for ios
-      shadowOpacity: 0.5,  // for ios
-      elevation: 5  // for android
-    }
+  navigationOptions: {
+    header: null,
+    gesturesEnabled: false,
+
   }
-})
+});
 
 const styles = StyleSheet.create({
   container: {
