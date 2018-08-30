@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Button, TextInput, TouchableOpacity } from 'rea
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import {baseURL} from './info/info.json';
+
 class Login extends Component {
 
   constructor(props) {
@@ -14,7 +16,12 @@ class Login extends Component {
   }
 
   tryLogin = () => {
-    this.props.navigation.navigate('Index');
+    return fetch(baseURL + "/about")
+    .then((response) => response.json())
+    .then((resJson) => console.log(resJson))
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   render() {
